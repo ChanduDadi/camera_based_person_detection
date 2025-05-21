@@ -1,28 +1,71 @@
 # Camera-Based Queue Analysis in an Amusement Park
 
-This project presents a real-time queue analysis system developed for an amusement park scenario. It leverages YOLO for person detection and Torchreid for robust cross-camera re-identification to ensure individuals are tracked without duplication.
+This project detects and tracks people across two video cameras using **YOLOv8** and **TorchReID** (Re-Identification). It assigns each person a consistent ID, even when they move from one camera to another.
 
-## Overview
+---
 
-- **Goal**: Dynamically estimate the number of people in a queue using multi-camera feeds.
-- **Challenge**: Accurately track people across overlapping or angled camera views, avoiding double counting.
-- **Approach**: Use YOLO for initial person detection and Torchreid to maintain identity across camera transitions.
+## Folder & File Descriptions
 
-## System Pipeline
+### Folders
 
-1. **Person Detection**: YOLO detects individuals in each frame from multiple camera streams.
-2. **Feature Extraction**: Appearance features are extracted using Torchreid models.
-3. **Re-Identification**: Cross-camera ID matching is performed to track individuals continuously.
-4. **Queue Counting**: The number of unique individuals currently in view is updated in real-time.
+- **`.ipynb_checkpoints/`**  
+  → Auto-save files from Jupyter Notebook. *(Can be ignored)*
 
-## Tools Used
+- **`logs/`**  
+  → Training or runtime logs (e.g., ReID training progress).
 
-- Python
-- YOLOv5 (for person detection)
-- Torchreid (for re-identification)
-- OpenCV (for video processing and visualization)
+- **`reid_dataset/`**  
+  → Custom dataset used for person re-identification training.
 
-## Demo
+- **`images_from_2_cameras/`**  
+  → main images taken in queue from 2 cameras.
 
-The demo shows a live simulation where individuals are tracked across multiple camera views. Bounding boxes and ID labels illustrate successful re-identification and accurate queue length estimation.
+- **`video/`**  
+  → Contains input videos which are having same fps:
+  - `cam1_fps.mp4`
+  - `cam2_fps.mp4`  
+  Used as input for detection and tracking.
 
+- **`output/`**  
+  → (Optional) Directory for saving additional output data (like images or results).
+
+---
+
+### Important Files
+
+- **`output_tracking.xlsx`**  
+  → Logs frame-by-frame tracking data: person IDs in Cam1 and Cam2, and count of unique people.
+
+- **`output.avi`**  
+  → Final output video with visual tracking results (IDs and bounding boxes).
+
+- **`reid_osnet.pt`**  
+  → Finetuned model for person re-identification (OSNet).
+
+- **`yolov8s.pt / yolov8n.pt`**  
+  → YOLOv8 models for detecting people.  
+  - `s` = small version  
+  - `n` = nano version (faster, lighter)
+
+- **`Task-2-Main_Notebook.ipynb`**  
+  → Main Jupyter Notebook where detection and tracking happens.  
+  Run this to perform multi-camera person tracking.
+
+- **`Task-2-Main_Notebook.html`**  
+  → Main Jupyter Notebook in html where detection and tracking happens.  
+  HTML file is useful to check directly without runing notebook. 
+
+- **`training_reid.ipynb`**  
+  → Notebook used to fine-tune the ReID model using custom dataset.
+
+---
+
+## How It Works (Overview)
+
+1. **YOLOv8** detects people in both video streams.
+2. **TorchReID** compares features to match the same person across both cameras.
+3. Each person is assigned a unique **ID**.
+4. Outputs include:
+   - A **video** with drawn boxes and IDs.
+   - An **Excel** log of who appeared where.
+   - Optional **waiting time** report.
