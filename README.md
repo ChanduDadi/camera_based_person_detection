@@ -1,4 +1,4 @@
-# Camera-Based Queue Analysis in an Amusement Park
+# Multi-Camera-Based Queue Analysis in an Amusement Park
 
 This project detects and tracks people across two video cameras using **YOLOv8** and **TorchReID** (Re-Identification). It assigns each person a consistent ID, even when they move from one camera to another.
 
