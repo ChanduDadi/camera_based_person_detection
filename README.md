@@ -71,3 +71,10 @@ You can find full folder in drive(some files are missing which are having more t
    - A **video** with drawn boxes and IDs.
    - An **Excel** log of who appeared where.
    - Optional **waiting time** report.
+
+## Team Members
+1. Anagha Manikathuparambil Baby
+2. Anusha Vishwanath Salimath
+3. Chandu Dadi
+4. Pratik Nichite
+5. Tharun Kumar Korine Palli
