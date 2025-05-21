@@ -2,6 +2,8 @@
 
 This project detects and tracks people across two video cameras using **YOLOv8** and **TorchReID** (Re-Identification). It assigns each person a consistent ID, even when they move from one camera to another.
 
+You can find full folder in drive(some files are missing which are having more than 25mb, so you can find everything here): https://drive.google.com/drive/folders/1iEGfpo96BX2WrhPXmUShXsxxwDw2_0K_?usp=sharing
+
 ---
 
 ## Folder & File Descriptions
